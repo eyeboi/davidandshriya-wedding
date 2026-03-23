@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- CHANGE THIS URL ---
     // After deploying your Google Apps Script, paste the URL here:
-    const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxyPLZX8tIllbvFERpq1VoWwMoAFiCjwo9l0tO3kST7srNqUeQdgRkBk6jSLwvKJP7aSQ/exec';
 
     // Disable submit button while sending
     const submitBtn = form.querySelector('.btn-submit');
