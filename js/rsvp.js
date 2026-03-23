@@ -1,0 +1,131 @@
+/* ============================================
+   RSVP Page — Multi-step form logic
+   ============================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const form = document.getElementById('rsvpForm');
+  const steps = document.querySelectorAll('.form-step');
+  const progressBar = document.getElementById('progressBar');
+  const totalSteps = steps.length;
+  let currentStep = 1;
+
+  function showStep(n) {
+    steps.forEach(s => {
+      s.classList.remove('active');
+      if (parseInt(s.dataset.step) === n) {
+        s.classList.add('active');
+      }
+    });
+    currentStep = n;
+    progressBar.style.width = `${(n / totalSteps) * 100}%`;
+    window.scrollTo({ top: document.querySelector('.rsvp-main').offsetTop - 100, behavior: 'smooth' });
+  }
+
+  // Next buttons
+  document.querySelectorAll('.btn-next').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nextStep = parseInt(btn.dataset.next);
+
+      // Validate required fields in current step
+      const currentFieldset = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+      const requiredFields = currentFieldset.querySelectorAll('[required]');
+      let valid = true;
+
+      requiredFields.forEach(field => {
+        if (field.type === 'radio') {
+          const radioGroup = currentFieldset.querySelectorAll(`[name="${field.name}"]`);
+          const checked = [...radioGroup].some(r => r.checked);
+          if (!checked) {
+            valid = false;
+            // Highlight the group
+            field.closest('.form-group').style.outline = '1px solid var(--coral, #f0885a)';
+            field.closest('.form-group').style.outlineOffset = '8px';
+            setTimeout(() => {
+              field.closest('.form-group').style.outline = '';
+            }, 2000);
+          }
+        } else if (!field.value.trim()) {
+          valid = false;
+          field.style.borderBottomColor = 'var(--coral, #f0885a)';
+          setTimeout(() => {
+            field.style.borderBottomColor = '';
+          }, 2000);
+        }
+      });
+
+      if (valid) {
+        showStep(nextStep);
+      }
+    });
+  });
+
+  // Prev buttons
+  document.querySelectorAll('.btn-prev').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showStep(parseInt(btn.dataset.prev));
+    });
+  });
+
+  // Show guest names field when guests > 1
+  const guestsSelect = document.getElementById('guests');
+  const guestNamesGroup = document.getElementById('guestNamesGroup');
+
+  guestsSelect.addEventListener('change', () => {
+    guestNamesGroup.style.display = parseInt(guestsSelect.value) > 1 ? 'block' : 'none';
+  });
+
+  // Show kids names field
+  document.querySelectorAll('[name="kids"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.getElementById('kidsNamesGroup').style.display =
+        radio.value === 'yes' && radio.checked ? 'block' : 'none';
+    });
+  });
+
+  // Form submission
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const fd = new FormData(form);
+    const data = {};
+    for (const [key, value] of fd.entries()) {
+      if (data[key]) {
+        // Handle multiple values (checkboxes)
+        if (Array.isArray(data[key])) {
+          data[key].push(value);
+        } else {
+          data[key] = [data[key], value];
+        }
+      } else {
+        data[key] = value;
+      }
+    }
+
+    // TODO: POST to Google Apps Script endpoint
+    // fetch('YOUR_GOOGLE_SCRIPT_URL', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    //   headers: { 'Content-Type': 'application/json' }
+    // });
+
+    console.log('RSVP Data:', data);
+
+    // Show success
+    form.style.display = 'none';
+    const success = document.getElementById('rsvpSuccess');
+    success.style.display = 'block';
+
+    document.getElementById('successName').textContent = `Thank you, ${data.fullName}.`;
+    document.getElementById('successMsg').textContent =
+      data.attending === 'yes'
+        ? "We're so excited to celebrate with you. You'll receive a confirmation email with all the details soon."
+        : "We'll miss you, but thank you so much for letting us know. You'll be in our hearts on the big day.";
+
+    // Update progress to 100%
+    progressBar.style.width = '100%';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+});

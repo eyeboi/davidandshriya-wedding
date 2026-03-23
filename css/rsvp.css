@@ -1,0 +1,500 @@
+/* ============================================
+   RSVP Page Styles
+   ============================================ */
+
+.rsvp-page {
+  background: var(--cream);
+}
+
+/* --- Solid Nav --- */
+.nav-solid {
+  background: var(--cream) !important;
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.nav-logo-dark {
+  color: var(--text) !important;
+}
+
+.nav-back {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-sec);
+  transition: color 0.3s ease;
+}
+
+.nav-back:hover {
+  color: var(--gold);
+}
+
+/* --- RSVP Hero --- */
+.rsvp-hero {
+  position: relative;
+  height: 50vh;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.rsvp-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.rsvp-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* celebration.jpeg is landscape — faces in upper half */
+  object-position: center 30%;
+}
+
+.rsvp-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(12, 10, 20, 0.4) 0%,
+    rgba(12, 10, 20, 0.3) 50%,
+    rgba(12, 10, 20, 0.7) 100%);
+}
+
+.rsvp-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 32px 40px;
+}
+
+.rsvp-hero-sanskrit {
+  font-size: 0.85rem;
+  color: var(--gold);
+  opacity: 0.6;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+.rsvp-hero-content h1 {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 8px;
+  margin-bottom: 16px;
+}
+
+.rsvp-hero-sub {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* --- Progress Bar --- */
+.form-progress {
+  position: sticky;
+  top: 72px;
+  z-index: 100;
+  height: 3px;
+  background: var(--cream-dark);
+}
+
+.form-progress-bar {
+  height: 100%;
+  width: 25%;
+  background: linear-gradient(90deg, var(--gold), var(--coral, #f0885a));
+  transition: width 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* --- Main Form Area --- */
+.rsvp-main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 32px 120px;
+}
+
+/* --- Form Steps --- */
+.form-step {
+  border: none;
+  padding: 0;
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+.form-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-legend {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.step-num {
+  font-family: 'Cormorant', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+.step-title {
+  font-family: 'Cormorant', serif;
+  font-size: 1.5rem;
+  color: var(--text);
+  letter-spacing: 0.5px;
+}
+
+.step-intro {
+  font-size: 0.9rem;
+  color: var(--text-sec);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+/* --- Form Groups (light theme) --- */
+.rsvp-page .form-group {
+  margin-bottom: 28px;
+}
+
+.rsvp-page .form-group label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-sec);
+  margin-bottom: 10px;
+}
+
+.req {
+  color: var(--coral, #f0885a);
+}
+
+.rsvp-page .form-group input[type="text"],
+.rsvp-page .form-group input[type="email"],
+.rsvp-page .form-group input[type="tel"],
+.rsvp-page .form-group select,
+.rsvp-page .form-group textarea {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--text);
+  background: transparent;
+  border-radius: 0;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+}
+
+.rsvp-page .form-group input::placeholder,
+.rsvp-page .form-group textarea::placeholder {
+  color: var(--cream-dark);
+}
+
+.rsvp-page .form-group input:focus,
+.rsvp-page .form-group select:focus,
+.rsvp-page .form-group textarea:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+.rsvp-page .form-group select {
+  cursor: pointer;
+}
+
+.rsvp-page .form-group select option {
+  background: var(--cream);
+  color: var(--text);
+}
+
+/* Radio & Checkbox on light bg */
+.rsvp-page .radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.radio-group-vertical {
+  flex-direction: column;
+  gap: 12px !important;
+}
+
+.rsvp-page .radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  color: var(--text);
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.rsvp-page .radio-label:hover {
+  opacity: 1;
+}
+
+.rsvp-page .radio-label input {
+  accent-color: var(--gold);
+  width: 16px;
+  height: 16px;
+}
+
+/* Chips on light bg */
+.rsvp-page .chip span {
+  padding: 10px 22px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--text-sec);
+  transition: all 0.3s ease;
+}
+
+.rsvp-page .chip input:checked + span {
+  border-color: var(--gold);
+  color: var(--gold-muted);
+  background: rgba(232, 168, 50, 0.08);
+  box-shadow: 0 0 12px rgba(232, 168, 50, 0.1);
+}
+
+.rsvp-page .chip span:hover {
+  border-color: var(--gold);
+  color: var(--text);
+}
+
+/* Quiz styling */
+.quiz-group {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+.quiz-group:last-of-type {
+  border-bottom: none;
+}
+
+.quiz-group label:first-child {
+  font-family: 'Cormorant', serif !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--text) !important;
+  margin-bottom: 14px !important;
+}
+
+/* --- Step Navigation --- */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+.btn-next,
+.btn-prev {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: none;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-next {
+  background: var(--text);
+  color: var(--cream);
+}
+
+.btn-next:hover {
+  background: var(--gold);
+  color: var(--black);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(232, 168, 50, 0.2);
+}
+
+.btn-next svg,
+.btn-prev svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-next:hover svg {
+  transform: translateX(3px);
+}
+
+.btn-prev {
+  background: none;
+  color: var(--text-sec);
+}
+
+.btn-prev:hover {
+  color: var(--text);
+}
+
+.btn-prev:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Submit button on light */
+.rsvp-page .btn-submit {
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  padding: 16px 40px;
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.rsvp-page .btn-submit:hover {
+  background: var(--gold-bright);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(245, 192, 66, 0.3);
+}
+
+.rsvp-page .btn-submit svg {
+  transition: transform 0.3s ease;
+}
+
+.rsvp-page .btn-submit:hover svg {
+  transform: translateX(4px);
+}
+
+/* --- Success State --- */
+.rsvp-success {
+  text-align: center;
+  padding: 80px 32px;
+  animation: fadeIn 0.6s ease;
+}
+
+.success-inner {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.success-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.success-ornament .hdo-line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+.success-ornament .hdo-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  opacity: 0.5;
+}
+
+.success-sanskrit {
+  font-size: 1.1rem;
+  color: var(--gold);
+  opacity: 0.5;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+.rsvp-success h2 {
+  font-size: 2.2rem;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.success-body {
+  font-size: 0.95rem;
+  color: var(--text-sec);
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.success-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+  transition: color 0.3s ease;
+}
+
+.success-link:hover {
+  color: var(--gold);
+}
+
+/* --- Form Row --- */
+.rsvp-page .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .rsvp-main {
+    padding: 40px 20px 80px;
+  }
+
+  .rsvp-page .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-hero {
+    height: 40vh;
+    min-height: 280px;
+  }
+
+  .step-nav {
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .btn-next, .rsvp-page .btn-submit {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-prev {
+    width: 100%;
+    justify-content: center;
+  }
+}

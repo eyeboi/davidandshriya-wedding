@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <g opacity="0.8">
+    <!-- Outer ring -->
+    <circle cx="100" cy="100" r="90" stroke="#c9a84c" stroke-width="0.5"/>
+    <circle cx="100" cy="100" r="80" stroke="#c9a84c" stroke-width="0.3"/>
+
+    <!-- Petal layers -->
+    <g stroke="#c9a84c" stroke-width="0.6" fill="none">
+      <!-- 8 outer petals -->
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(0 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(45 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(90 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(135 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(180 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(225 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(270 100 100)"/>
+      <ellipse cx="100" cy="30" rx="12" ry="30" transform="rotate(315 100 100)"/>
+    </g>
+
+    <g stroke="#c9a84c" stroke-width="0.5" fill="none">
+      <!-- 8 inner petals (offset) -->
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(22.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(67.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(112.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(157.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(202.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(247.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(292.5 100 100)"/>
+      <ellipse cx="100" cy="50" rx="8" ry="22" transform="rotate(337.5 100 100)"/>
+    </g>
+
+    <g stroke="#c9a84c" stroke-width="0.4" fill="none">
+      <!-- Tiny inner petals -->
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(0 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(45 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(90 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(135 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(180 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(225 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(270 100 100)"/>
+      <ellipse cx="100" cy="65" rx="5" ry="15" transform="rotate(315 100 100)"/>
+    </g>
+
+    <!-- Center -->
+    <circle cx="100" cy="100" r="10" stroke="#c9a84c" stroke-width="0.6"/>
+    <circle cx="100" cy="100" r="4" fill="#c9a84c" opacity="0.3"/>
+
+    <!-- Decorative dots on outer ring -->
+    <circle cx="100" cy="12" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="162" cy="38" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="188" cy="100" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="162" cy="162" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="100" cy="188" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="38" cy="162" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="12" cy="100" r="2" fill="#c9a84c" opacity="0.5"/>
+    <circle cx="38" cy="38" r="2" fill="#c9a84c" opacity="0.5"/>
+  </g>
+</svg>

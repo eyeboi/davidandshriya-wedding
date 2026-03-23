@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSVP — David & Shriya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@200;300;400;500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rsvp.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body class="rsvp-page">
+
+  <div class="grain"></div>
+
+  <!-- Nav -->
+  <nav class="nav nav-solid" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo nav-logo-dark">D <span class="nav-logo-amp">&</span> S</a>
+      <a href="index.html" class="nav-back">Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="rsvp-hero">
+    <div class="rsvp-hero-bg">
+      <img src="images/celebration.jpeg" alt="">
+    </div>
+    <div class="rsvp-hero-overlay"></div>
+    <div class="rsvp-hero-content">
+      <p class="devanagari rsvp-hero-sanskrit">आपकी उपस्थिति हमारा सौभाग्य</p>
+      <h1>RSVP</h1>
+      <p class="rsvp-hero-sub">We'd love to know you're coming. Fill out the form below and we'll save you a seat.</p>
+    </div>
+  </header>
+
+  <!-- Progress bar -->
+  <div class="form-progress">
+    <div class="form-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Form -->
+  <main class="rsvp-main">
+    <form class="rsvp-form" id="rsvpForm" novalidate>
+
+      <!-- Step 1: The Basics -->
+      <fieldset class="form-step active" data-step="1">
+        <legend class="step-legend">
+          <span class="step-num">01</span>
+          <span class="step-title">The Basics</span>
+        </legend>
+
+        <div class="form-group">
+          <label for="fullName">Full Name <span class="req">*</span></label>
+          <input type="text" id="fullName" name="fullName" required autocomplete="name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="req">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guests">Number of Guests <span class="req">*</span></label>
+            <select id="guests" name="guests" required>
+              <option value="">Select</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Will you be attending? <span class="req">*</span></label>
+            <div class="radio-group">
+              <label class="radio-label"><input type="radio" name="attending" value="yes" required><span>Joyfully Accepts</span></label>
+              <label class="radio-label"><input type="radio" name="attending" value="no"><span>Regretfully Declines</span></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="guestNamesGroup" style="display:none;">
+          <label for="guestNames">Guest Names</label>
+          <textarea id="guestNames" name="guestNames" rows="2" placeholder="Please list names of additional guests"></textarea>
+        </div>
+
+        <div class="step-nav">
+          <div></div>
+          <button type="button" class="btn-next" data-next="2">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Step 2: Events & Logistics -->
+      <fieldset class="form-step" data-step="2">
+        <legend class="step-legend">
+          <span class="step-num">02</span>
+          <span class="step-title">Events & Logistics</span>
+        </legend>
+
+        <div class="form-group">
+          <label>Which events will you attend?</label>
+          <div class="chip-group">
+            <label class="chip"><input type="checkbox" name="events" value="mehendi"><span>Mehendi</span></label>
+            <label class="chip"><input type="checkbox" name="events" value="sangeet"><span>Sangeet</span></label>
+            <label class="chip"><input type="checkbox" name="events" value="haldi"><span>Haldi</span></label>
+            <label class="chip"><input type="checkbox" name="events" value="ceremony"><span>Ceremony</span></label>
+            <label class="chip"><input type="checkbox" name="events" value="reception"><span>Reception</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dietary">Dietary Restrictions or Allergies</label>
+          <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, vegan, gluten-free, nut allergy...">
+        </div>
+
+        <div class="form-group">
+          <label for="mealPref">Meal Preference</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="mealPref" value="veg"><span>Vegetarian</span></label>
+            <label class="radio-label"><input type="radio" name="mealPref" value="nonveg"><span>Non-Vegetarian</span></label>
+            <label class="radio-label"><input type="radio" name="mealPref" value="vegan"><span>Vegan</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Will you need hotel shuttle service?</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="shuttle" value="yes"><span>Yes, please</span></label>
+            <label class="radio-label"><input type="radio" name="shuttle" value="no"><span>No, I'll drive</span></label>
+            <label class="radio-label"><input type="radio" name="shuttle" value="maybe"><span>Not sure yet</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Are you bringing kids?</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="kids" value="yes"><span>Yes</span></label>
+            <label class="radio-label"><input type="radio" name="kids" value="no"><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="form-group" id="kidsNamesGroup" style="display:none;">
+          <label for="kidsNames">Children's Names & Ages</label>
+          <input type="text" id="kidsNames" name="kidsNames" placeholder="e.g., Maya (5), Arjun (8)">
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-prev" data-prev="1">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span>Back</span>
+          </button>
+          <button type="button" class="btn-next" data-next="3">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Step 3: Fun Questions -->
+      <fieldset class="form-step" data-step="3">
+        <legend class="step-legend">
+          <span class="step-num">03</span>
+          <span class="step-title">How Well Do You Know Us?</span>
+        </legend>
+
+        <p class="step-intro">Let's have some fun. No wrong answers... well, maybe a few.</p>
+
+        <div class="form-group quiz-group">
+          <label>How did David and Shriya meet?</label>
+          <div class="radio-group radio-group-vertical">
+            <label class="radio-label"><input type="radio" name="q_howMet" value="med_school"><span>Medical school</span></label>
+            <label class="radio-label"><input type="radio" name="q_howMet" value="dating_app"><span>A dating app</span></label>
+            <label class="radio-label"><input type="radio" name="q_howMet" value="mutual_friends"><span>Through mutual friends</span></label>
+            <label class="radio-label"><input type="radio" name="q_howMet" value="hospital"><span>At the hospital</span></label>
+          </div>
+        </div>
+
+        <div class="form-group quiz-group">
+          <label>Who said "I love you" first?</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q_iLoveYou" value="david"><span>David</span></label>
+            <label class="radio-label"><input type="radio" name="q_iLoveYou" value="shriya"><span>Shriya</span></label>
+            <label class="radio-label"><input type="radio" name="q_iLoveYou" value="same_time"><span>Same time</span></label>
+          </div>
+        </div>
+
+        <div class="form-group quiz-group">
+          <label>What's David's go-to comfort food?</label>
+          <div class="radio-group radio-group-vertical">
+            <label class="radio-label"><input type="radio" name="q_davidFood" value="pizza"><span>Pizza</span></label>
+            <label class="radio-label"><input type="radio" name="q_davidFood" value="tacos"><span>Tacos</span></label>
+            <label class="radio-label"><input type="radio" name="q_davidFood" value="biryani"><span>Biryani</span></label>
+            <label class="radio-label"><input type="radio" name="q_davidFood" value="pasta"><span>Pasta</span></label>
+          </div>
+        </div>
+
+        <div class="form-group quiz-group">
+          <label>What's Shriya most likely doing on a Sunday?</label>
+          <div class="radio-group radio-group-vertical">
+            <label class="radio-label"><input type="radio" name="q_shriyaSunday" value="brunch"><span>Brunch with friends</span></label>
+            <label class="radio-label"><input type="radio" name="q_shriyaSunday" value="studying"><span>Studying or reading</span></label>
+            <label class="radio-label"><input type="radio" name="q_shriyaSunday" value="cooking"><span>Cooking something elaborate</span></label>
+            <label class="radio-label"><input type="radio" name="q_shriyaSunday" value="sleeping"><span>Still sleeping</span></label>
+          </div>
+        </div>
+
+        <div class="form-group quiz-group">
+          <label>Who is the better cook?</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="q_cook" value="david"><span>David</span></label>
+            <label class="radio-label"><input type="radio" name="q_cook" value="shriya"><span>Shriya</span></label>
+            <label class="radio-label"><input type="radio" name="q_cook" value="neither"><span>They order in</span></label>
+          </div>
+        </div>
+
+        <div class="form-group quiz-group">
+          <label>Where do you think they'll honeymoon?</label>
+          <input type="text" name="q_honeymoon" placeholder="Your best guess...">
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-prev" data-prev="2">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span>Back</span>
+          </button>
+          <button type="button" class="btn-next" data-next="4">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Step 4: Your Message -->
+      <fieldset class="form-step" data-step="4">
+        <legend class="step-legend">
+          <span class="step-num">04</span>
+          <span class="step-title">Final Touches</span>
+        </legend>
+
+        <div class="form-group">
+          <label for="songRequest">Song Request for the DJ</label>
+          <input type="text" id="songRequest" name="songRequest" placeholder="What song will get you on the dance floor?">
+        </div>
+
+        <div class="form-group">
+          <label for="advice">Best Marriage Advice</label>
+          <textarea id="advice" name="advice" rows="2" placeholder="Share your wisdom (or your best joke)..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Whose side are you on?</label>
+          <div class="radio-group">
+            <label class="radio-label"><input type="radio" name="side" value="bride"><span>Bride's side</span></label>
+            <label class="radio-label"><input type="radio" name="side" value="groom"><span>Groom's side</span></label>
+            <label class="radio-label"><input type="radio" name="side" value="both"><span>Both, obviously</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Anything else you'd like to share?</label>
+          <textarea id="message" name="message" rows="3" placeholder="Well-wishes, questions, travel notes..."></textarea>
+        </div>
+
+        <div class="step-nav">
+          <button type="button" class="btn-prev" data-prev="3">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span>Back</span>
+          </button>
+          <button type="submit" class="btn-submit">
+            <span>Submit RSVP</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+        </div>
+      </fieldset>
+
+    </form>
+
+    <!-- Success State -->
+    <div class="rsvp-success" id="rsvpSuccess" style="display:none;">
+      <div class="success-inner">
+        <div class="success-ornament">
+          <span class="hdo-line"></span>
+          <span class="hdo-diamond"></span>
+          <span class="hdo-line"></span>
+        </div>
+        <p class="devanagari success-sanskrit">धन्यवाद</p>
+        <h2 id="successName">Thank you!</h2>
+        <p id="successMsg" class="success-body"></p>
+        <a href="index.html" class="success-link">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/rsvp.js"></script>
+</body>
+</html>
