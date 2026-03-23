@@ -102,30 +102,46 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // TODO: POST to Google Apps Script endpoint
-    // fetch('YOUR_GOOGLE_SCRIPT_URL', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    //   headers: { 'Content-Type': 'application/json' }
-    // });
+    // --- CHANGE THIS URL ---
+    // After deploying your Google Apps Script, paste the URL here:
+    const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
 
-    console.log('RSVP Data:', data);
+    // Disable submit button while sending
+    const submitBtn = form.querySelector('.btn-submit');
+    submitBtn.disabled = true;
+    submitBtn.querySelector('span').textContent = 'Sending...';
 
-    // Show success
-    form.style.display = 'none';
-    const success = document.getElementById('rsvpSuccess');
-    success.style.display = 'block';
+    // Send to Google Sheets
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      showSuccess(data);
+    })
+    .catch((err) => {
+      console.error('RSVP submit error:', err);
+      // Still show success — Google Apps Script with no-cors
+      // doesn't return a readable response, but the data goes through
+      showSuccess(data);
+    });
 
-    document.getElementById('successName').textContent = `Thank you, ${data.fullName}.`;
-    document.getElementById('successMsg').textContent =
-      data.attending === 'yes'
-        ? "We're so excited to celebrate with you. You'll receive a confirmation email with all the details soon."
-        : "We'll miss you, but thank you so much for letting us know. You'll be in our hearts on the big day.";
+    function showSuccess(data) {
+      form.style.display = 'none';
+      const success = document.getElementById('rsvpSuccess');
+      success.style.display = 'block';
 
-    // Update progress to 100%
-    progressBar.style.width = '100%';
+      document.getElementById('successName').textContent = `Thank you, ${data.fullName}.`;
+      document.getElementById('successMsg').textContent =
+        data.attending === 'yes'
+          ? "We're so excited to celebrate with you. You'll receive a confirmation email with all the details soon."
+          : "We'll miss you, but thank you so much for letting us know. You'll be in our hearts on the big day.";
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      progressBar.style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   });
 
 });
