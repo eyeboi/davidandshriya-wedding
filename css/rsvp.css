@@ -255,13 +255,25 @@
   accent-color: var(--gold);
   width: 16px;
   height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+  position: relative;
+  top: 0;
+}
+
+.rsvp-page .radio-label span {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1;
 }
 
 /* Chips on light bg */
 .rsvp-page .chip span {
   padding: 10px 22px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: 'Libre Franklin', sans-serif;
   font-size: 0.8rem;
+  font-weight: 300;
   letter-spacing: 1px;
   color: var(--text-sec);
   transition: all 0.3s ease;
@@ -289,13 +301,25 @@
   border-bottom: none;
 }
 
-.quiz-group label:first-child {
+.quiz-group > label:first-child {
   font-family: 'Cormorant', serif !important;
   font-size: 1.1rem !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
   color: var(--text) !important;
   margin-bottom: 14px !important;
+}
+
+/* Ensure radio labels in quiz groups use body font consistently */
+.quiz-group .radio-label {
+  font-family: 'Libre Franklin', sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.quiz-group .radio-label span {
+  font-family: 'Libre Franklin', sans-serif;
 }
 
 /* --- Step Navigation --- */
