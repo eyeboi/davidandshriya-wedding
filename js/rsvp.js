@@ -10,6 +10,72 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalSteps = steps.length;
   let currentStep = 1;
 
+  // --- Guest List Autocomplete ---
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxV0VElPrQf5EHTrQ58x5IZX4A5DqHxtfccGl9sne0i2SfJY8xFkM-LJrIilwei3eHFqA/exec';
+  let guestNames = [];
+
+  // Fetch guest list from Sheet #3
+  fetch(GOOGLE_SCRIPT_URL + '?action=guestlist')
+    .then(r => r.json())
+    .then(data => {
+      if (data.result === 'success') {
+        guestNames = data.names;
+      }
+    })
+    .catch(() => {});
+
+  const nameInput = document.getElementById('fullName');
+  const suggestions = document.getElementById('nameSuggestions');
+  const nameError = document.getElementById('nameError');
+  let nameVerified = false;
+
+  nameInput.addEventListener('input', () => {
+    const val = nameInput.value.trim().toLowerCase();
+    suggestions.innerHTML = '';
+    nameVerified = false;
+    nameError.style.display = 'none';
+
+    if (val.length < 1 || guestNames.length === 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    const matches = guestNames.filter(n =>
+      n.toString().toLowerCase().includes(val)
+    ).slice(0, 8);
+
+    // Check for exact match as user types
+    if (guestNames.some(n => n.toString().toLowerCase() === val)) {
+      nameVerified = true;
+    }
+
+    if (matches.length === 0) {
+      suggestions.style.display = 'none';
+      return;
+    }
+
+    matches.forEach(name => {
+      const li = document.createElement('li');
+      li.textContent = name;
+      li.addEventListener('click', () => {
+        nameInput.value = name;
+        nameVerified = true;
+        nameError.style.display = 'none';
+        suggestions.style.display = 'none';
+      });
+      suggestions.appendChild(li);
+    });
+
+    suggestions.style.display = 'block';
+  });
+
+  // Hide suggestions on click outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.name-search-group')) {
+      suggestions.style.display = 'none';
+    }
+  });
+
   function showStep(n) {
     steps.forEach(s => {
       s.classList.remove('active');
@@ -54,7 +120,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
+      // Enforce guest list on step 1
+      if (valid && currentStep === 1 && !nameVerified) {
+        valid = false;
+        nameError.style.display = 'block';
+        nameInput.style.borderBottomColor = 'var(--coral, #f0885a)';
+        setTimeout(() => {
+          nameInput.style.borderBottomColor = '';
+        }, 3000);
+      }
+
       if (valid) {
+        // If declining, skip to final step (step 4)
+        if (currentStep === 1) {
+          const attending = document.querySelector('[name="attending"]:checked');
+          if (attending && attending.value === 'no') {
+            showStep(4);
+            return;
+          }
+        }
         showStep(nextStep);
       }
     });
@@ -63,7 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Prev buttons
   document.querySelectorAll('.btn-prev').forEach(btn => {
     btn.addEventListener('click', () => {
-      showStep(parseInt(btn.dataset.prev));
+      const prevStep = parseInt(btn.dataset.prev);
+      // If on step 4 and they declined, go back to step 1
+      if (currentStep === 4) {
+        const attending = document.querySelector('[name="attending"]:checked');
+        if (attending && attending.value === 'no') {
+          showStep(1);
+          return;
+        }
+      }
+      showStep(prevStep);
     });
   });
 
@@ -101,10 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
         data[key] = value;
       }
     }
-
-    // --- CHANGE THIS URL ---
-    // After deploying your Google Apps Script, paste the URL here:
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxz49F5ZKfDAEnVECyM-UiHXUnrrI9trt1rOczwvO1h7BMbFff0aueLvtjcbvC3Pnyw9A/exec';
 
     // Disable submit button while sending
     const submitBtn = form.querySelector('.btn-submit');

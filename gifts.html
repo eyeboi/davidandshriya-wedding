@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gifts — David & Shriya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Libre+Franklin:wght@200;300;400;500&family=Noto+Serif+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/subpage.css">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+  <meta property="og:title" content="Gifts — David & Shriya's Wedding">
+  <meta property="og:description" content="Your presence is the only gift we need.">
+  <meta property="og:image" content="https://davidandshriya.com/images/proposal.jpeg">
+  <meta property="og:url" content="https://davidandshriya.com/gifts.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gifts — David & Shriya's Wedding">
+  <meta name="twitter:image" content="https://davidandshriya.com/images/proposal.jpeg">
+</head>
+<body class="subpage">
+
+  <canvas id="ambientCanvas"></canvas>
+  <div class="grain"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">D <span class="nav-logo-amp">&</span> S</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="travel.html">Travel</a></li>
+        <li><a href="gifts.html" class="nav-active">Gifts</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="rsvp.html" class="nav-cta">RSVP</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <header class="page-hero">
+    <div class="page-hero-bg">
+      <img src="images/ring-detail.jpeg" alt="Engagement ring closeup" style="object-position: center 40%;">
+    </div>
+    <div class="page-hero-overlay"></div>
+    <div class="page-hero-content">
+      <p class="page-hero-sanskrit devanagari">आशीर्वाद</p>
+      <h1>Gifts</h1>
+      <p class="page-hero-sub">Your presence is the only gift we need.</p>
+    </div>
+  </header>
+
+  <!-- Gift -->
+  <section class="section section-gift">
+    <div class="container">
+      <div class="gift-block sr">
+        <div class="gift-border">
+          <span class="gift-corner gift-tl"></span>
+          <span class="gift-corner gift-tr"></span>
+          <span class="gift-corner gift-bl"></span>
+          <span class="gift-corner gift-br"></span>
+        </div>
+        <h2>Your presence is the only gift we need.</h2>
+        <p>We are not registered for gifts. If you wish to honor us, we would gratefully welcome a monetary blessing toward our future together.</p>
+
+        <div class="gift-methods">
+          <a href="#" class="gift-method" title="Zelle">
+            <svg class="gift-icon" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M14 24l12-10M14 14h10M16 24h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="gift-method-name">Zelle</span>
+            <span class="gift-method-handle">email or phone TBD</span>
+          </a>
+          <a href="#" class="gift-method" title="Venmo">
+            <svg class="gift-icon" viewBox="0 0 40 40" fill="none"><path d="M12 8c1.5 2.5 2 5 2 8 0 6-4.5 13-8 18h14l3-22h-9l-1 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(8,2) scale(0.85)"/></svg>
+            <span class="gift-method-name">Venmo</span>
+            <span class="gift-method-handle">@handle TBD</span>
+          </a>
+          <a href="#" class="gift-method" title="Cash App">
+            <svg class="gift-icon" viewBox="0 0 40 40" fill="none"><rect x="6" y="6" width="28" height="28" rx="8" stroke="currentColor" stroke-width="1.5"/><path d="M20 10v2m0 16v2m-4-16c0-1.5 1.8-2.5 4-2.5s4 1 4 2.5-1.8 2.5-4 3.5c-2.2 1-4 2-4 3.5s1.8 2.5 4 2.5 4-1 4-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="gift-method-name">Cash App</span>
+            <span class="gift-method-handle">$cashtag TBD</span>
+          </a>
+          <a href="#" class="gift-method" title="PayPal">
+            <svg class="gift-icon" viewBox="0 0 40 40" fill="none"><path d="M15 32l2-12h6c5 0 8-4 8-8s-2-6-7-6h-9l-5 26h5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 32l2-12h6c5 0 8-4 8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.4" transform="translate(2,2)"/></svg>
+            <span class="gift-method-name">PayPal</span>
+            <span class="gift-method-handle">email TBD</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP CTA -->
+  <section class="section section-ink" id="rsvp">
+    <div class="container">
+      <div class="rsvp-cta">
+        <h2>We can't wait<br>to celebrate<br><em>with you.</em></h2>
+        <div class="rsvp-hindi">
+          <p class="devanagari">आपकी उपस्थिति हमारा सौभाग्य</p>
+          <p class="rsvp-eng">Your presence is our honor.</p>
+        </div>
+        <a href="rsvp.html" class="rsvp-cta-btn">
+          <span>RSVP Now</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-img">
+      <img src="images/together.jpeg" alt="David and Shriya looking out at the ocean together">
+    </div>
+    <div class="footer-overlay"></div>
+    <div class="container footer-content">
+      <p class="footer-names">David & Shriya</p>
+      <p class="footer-hashtag">#DavidAndShriya</p>
+      <p class="footer-note">Made with love</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

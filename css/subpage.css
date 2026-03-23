@@ -1,0 +1,104 @@
+/* ============================================
+   Subpage Shared Styles
+   Nav, page hero, RSVP CTA, footer reused
+   ============================================ */
+
+/* --- Subpage Nav (solid bg, full links) --- */
+.subpage .nav {
+  background: var(--cream);
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.subpage .nav-logo {
+  color: var(--text);
+}
+
+.subpage .nav-links a {
+  color: var(--text-sec);
+}
+
+.subpage .nav-links a:hover {
+  color: var(--gold);
+}
+
+.subpage .nav-toggle span {
+  background: var(--text);
+}
+
+/* Active nav link */
+.subpage .nav-links a.nav-active {
+  color: var(--gold);
+  opacity: 1;
+}
+
+/* --- Page Hero --- */
+.page-hero {
+  position: relative;
+  height: 50vh;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.page-hero-bg {
+  position: absolute;
+  inset: 0;
+}
+
+.page-hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.page-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(12, 10, 20, 0.4) 0%,
+    rgba(12, 10, 20, 0.3) 50%,
+    rgba(12, 10, 20, 0.7) 100%);
+}
+
+.page-hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 80px 32px 40px;
+}
+
+.page-hero-content h1 {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  font-weight: 300;
+  color: #fff;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.page-hero-sanskrit {
+  font-size: 0.85rem;
+  color: var(--gold);
+  opacity: 0.6;
+  letter-spacing: 4px;
+  margin-bottom: 16px;
+}
+
+.page-hero-sub {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* FAQ page — full-width layout without the left column */
+.faq-layout-centered {
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin: 0 auto;
+}

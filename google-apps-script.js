@@ -150,6 +150,36 @@ function doGet(e) {
       return jsonResponse({ result: 'success', cleared: row });
     }
 
+    if (action === 'setupGuestList') {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var guestSheet = ss.getSheets()[2]; // Sheet #3
+      if (!guestSheet) {
+        guestSheet = ss.insertSheet('Guest List');
+      }
+      guestSheet.clear();
+      var names = [
+        ['Name'],
+        ['Shriya Airen'],
+        ['Amit Airen'],
+        ['David Taylor'],
+        ['Sanjana Airen'],
+        ['Mak Djulbegovic']
+      ];
+      guestSheet.getRange(1, 1, names.length, 1).setValues(names);
+      guestSheet.getRange('A1').setFontWeight('bold');
+      return jsonResponse({ result: 'success', message: 'Guest list created with ' + (names.length - 1) + ' names' });
+    }
+
+    if (action === 'guestlist') {
+      var ss = SpreadsheetApp.getActiveSpreadsheet();
+      var guestSheet = ss.getSheets()[2]; // Sheet #3 (0-indexed)
+      if (!guestSheet) return jsonResponse({ result: 'error', error: 'Guest list sheet not found' });
+      var data = guestSheet.getDataRange().getValues();
+      // First column = guest names, skip header row
+      var names = data.slice(1).map(function(row) { return row[0]; }).filter(function(n) { return n; });
+      return jsonResponse({ result: 'success', names: names });
+    }
+
     if (action === 'dashboard') {
       updateDashboard();
       return jsonResponse({ result: 'success', message: 'Dashboard updated' });

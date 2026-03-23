@@ -7,109 +7,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Ambient Canvas: Floating gold particles ---
   const canvas = document.getElementById('ambientCanvas');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-  let animFrame;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animFrame;
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-
-  function createParticles() {
-    particles = [];
-    const count = Math.floor(window.innerWidth / 25);
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.2 + 0.3,
-        speedY: Math.random() * 0.15 + 0.02,
-        speedX: (Math.random() - 0.5) * 0.1,
-        opacity: Math.random() * 0.15 + 0.03,
-        phase: Math.random() * Math.PI * 2
-      });
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-  }
 
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const time = Date.now() * 0.001;
-
-    particles.forEach(p => {
-      p.y -= p.speedY;
-      p.x += Math.sin(time + p.phase) * 0.15;
-
-      if (p.y < -10) {
-        p.y = canvas.height + 10;
-        p.x = Math.random() * canvas.width;
+    function createParticles() {
+      particles = [];
+      const count = Math.floor(window.innerWidth / 25);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 1.2 + 0.3,
+          speedY: Math.random() * 0.15 + 0.02,
+          speedX: (Math.random() - 0.5) * 0.1,
+          opacity: Math.random() * 0.15 + 0.03,
+          phase: Math.random() * Math.PI * 2
+        });
       }
+    }
 
-      const pulse = Math.sin(time * 0.5 + p.phase) * 0.3 + 0.7;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      // Alternate between gold, lavender, and coral particles
-      const colors = [
-        [232, 168, 50],   // gold
-        [196, 168, 216],  // lavender
-        [240, 136, 90],   // coral
-      ];
-      const c = colors[Math.floor(p.phase) % 3];
-      ctx.fillStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${p.opacity * pulse * 1.4})`;
-      ctx.fill();
-    });
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const time = Date.now() * 0.001;
 
-    animFrame = requestAnimationFrame(drawParticles);
-  }
+      particles.forEach(p => {
+        p.y -= p.speedY;
+        p.x += Math.sin(time + p.phase) * 0.15;
 
-  resizeCanvas();
-  createParticles();
-  drawParticles();
+        if (p.y < -10) {
+          p.y = canvas.height + 10;
+          p.x = Math.random() * canvas.width;
+        }
 
-  window.addEventListener('resize', () => {
+        const pulse = Math.sin(time * 0.5 + p.phase) * 0.3 + 0.7;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        const colors = [
+          [232, 168, 50],   // gold
+          [196, 168, 216],  // lavender
+          [240, 136, 90],   // coral
+        ];
+        const c = colors[Math.floor(p.phase) % 3];
+        ctx.fillStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${p.opacity * pulse * 1.4})`;
+        ctx.fill();
+      });
+
+      animFrame = requestAnimationFrame(drawParticles);
+    }
+
     resizeCanvas();
     createParticles();
-  });
+    drawParticles();
 
-  // Reduce particle animation when not visible
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-      cancelAnimationFrame(animFrame);
-    } else {
-      drawParticles();
-    }
-  });
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animFrame);
+      } else {
+        drawParticles();
+      }
+    });
+  }
 
   // --- Cursor Glow ---
   const glow = document.getElementById('cursorGlow');
-  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+  if (glow) {
+    let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-  function updateGlow() {
-    glowX += (mouseX - glowX) * 0.08;
-    glowY += (mouseY - glowY) * 0.08;
-    glow.style.left = glowX + 'px';
-    glow.style.top = glowY + 'px';
-    requestAnimationFrame(updateGlow);
+    function updateGlow() {
+      glowX += (mouseX - glowX) * 0.08;
+      glowY += (mouseY - glowY) * 0.08;
+      glow.style.left = glowX + 'px';
+      glow.style.top = glowY + 'px';
+      requestAnimationFrame(updateGlow);
+    }
+
+    updateGlow();
   }
-
-  updateGlow();
 
   // --- Mobile Nav ---
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
-  navToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
 
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => navLinks.classList.remove('active'));
-  });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('active'));
+    });
+  }
 
   // --- Nav scroll effect ---
   const nav = document.getElementById('nav');
@@ -171,6 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- RSVP Form ---
   const rsvpForm = document.getElementById('rsvpForm');
+  if (!rsvpForm) return;
 
   rsvpForm.addEventListener('submit', (e) => {
     e.preventDefault();
